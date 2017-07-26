@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from . import views
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
@@ -12,10 +13,16 @@ urlpatterns = [
     url(r'^stock/(?P<pk>\d+)/delete/$', views.stock_delete, name='stock_delete'),
     url(r'^stock/(?P<pk>\d+)/edit/$', views.stock_edit, name='stock_edit'),
     url(r'^stock/create/$', views.stock_new, name='stock_new'),
+    url(r'^mutual/$', views.mutual_list, name='mutual_list'),
+    url(r'^mutual/(?P<pk>\d+)/delete/$', views.mutual_delete, name='mutual_delete'),
+    url(r'^mutual/(?P<pk>\d+)/edit/$', views.mutual_edit, name='mutual_edit'),
+    url(r'^mutual/create/$', views.mutual_new, name='mutual_new'),
     url(r'^investment/$', views.investment_list, name='investment_list'),
     url(r'^investment/(?P<pk>\d+)/delete/$', views.investment_delete, name='investment_delete'),
     url(r'^investment/(?P<pk>\d+)/edit/$', views.investment_edit, name='investment_edit'),
     url(r'^investment/create/$', views.investment_new, name='investment_new'),
     url(r'^accounts/profile/$', views.home, name='account_home'),
-
+    url(r'^customers_json/', views.CustomerList.as_view()),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
