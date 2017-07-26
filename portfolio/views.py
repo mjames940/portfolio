@@ -154,9 +154,9 @@ def mutual_new(request):
            return render(request, 'portfolio/mutual_list.html',
                          {'mutuals': mutuals})
    else:
-       form = StockForm()
+       form = MutualForm()
        # print("Else")
-   return render(request, 'portfolio/stock_new.html', {'form': form})
+   return render(request, 'portfolio/mutual_new.html', {'form': form})
 
 
 @login_required
@@ -171,13 +171,13 @@ def mutual_edit(request, pk):
            mutuals = Mutual.objects.filter(purchase_date__lte=timezone.now())
            return render(request, 'portfolio/mutual_list.html', {'mutuals': mutuals})
     else:
-        form = StockForm(instance=mutual)
+        form = MutualForm(instance=mutual)
         return render(request, 'portfolio/mutual_edit.html', {'form': form})
 
 
 @login_required
 def mutual_delete(request, pk):
-   mutual = get_object_or_404(Stock, pk=pk)
+   mutual = get_object_or_404(Mutual, pk=pk)
    mutual.delete()
    mutuals = Mutual.objects.filter(purchase_date__lte=timezone.now())
    return render(request, 'portfolio/mutual_list.html', {'mutuals': mutuals})
