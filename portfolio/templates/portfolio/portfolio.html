@@ -66,7 +66,48 @@
     </div>
     </tbody>
 </div>
+<div class="row">
+    <h2 style="padding-left: 15Px">Mutual Fund Information</h2>
+</div>
 <div>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr class="bg-info">
+            <th>Customer</th>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Purchase Price</th>
+            <th>Initial Mutal Fund Cost</th>
+            <th>Purchase Date</th>
+            <th>Recent Price</th>
+            <th>Recent Value</th>
+            <th>Recent Date</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for mutual in mutuals %}
+        <tr>
+            <td>{{ mutual.customer }}</td>
+            <td>{{ mutual.symbol }}</td>
+            <td>{{ mutual.name }}</td>
+            <td>{{ mutual.shares }}</td>
+            <td>{{ mutual.purchase_price }}</td>
+            <td>{{ mutual.purchase_price|mul:mutual.shares}}</td>
+            <td>{{ mutual.purchase_date }}</td>
+            <td>{{ mutual.recent_value }}</td>
+             <td>{{ mutual.recent_value|mul:mutual.shares}}</td>
+            <td>{{ mutual.recent_date }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+<div>
+    <div class="row">
+        <h2 style="padding-left: 15Px">Investment Information</h2>
+    </div>
     <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr class="bg-info">
